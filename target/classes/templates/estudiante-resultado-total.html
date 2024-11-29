@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas - Restaurante Gourmet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="../img/iconoweb.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #34d399, #007bff);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #343a40;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-option {
+            margin: 10px 0;
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-reservado {
+            background: linear-gradient(45deg, #28a745, #218838);
+            color: white;
+        }
+
+        .btn-proceso {
+            background: linear-gradient(45deg, #ffc107, #e0a800);
+            color: white;
+        }
+
+        .btn-eliminado {
+            background: linear-gradient(45deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .selected-state {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            color: #495057;
+        }
+
+        .selected-state span {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Restaurante Gourmet</h1>
+        <form>
+            <!-- Formulario de reserva -->
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="personas">Número de personas</label>
+                <input type="number" class="form-control" id="personas" placeholder="Ejemplo: 4" required min="1">
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" class="form-control" id="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora</label>
+                <input type="time" class="form-control" id="hora" required>
+            </div>
+        </form>
+
+        <!-- Botones para seleccionar estado -->
+        <p class="text-center mt-4">Seleccione el estado de la reserva:</p>
+        <button type="button" class="btn-option btn-reservado" onclick="guardarEstado('Reservado')">Reservado</button>
+        <button type="button" class="btn-option btn-proceso" onclick="guardarEstado('En Proceso')">En Proceso</button>
+        <button type="button" class="btn-option btn-eliminado" onclick="guardarEstado('Eliminada')">Eliminada</button>
+
+        <!-- Mostrar estado seleccionado -->
+        <div id="estadoSeleccionado" class="selected-state">Estado seleccionado: <span>Ninguno</span></div>
+
+        <!-- Botón para confirmar -->
+        <button type="button" class="btn btn-primary btn-block mt-4" onclick="confirmarReserva()">Confirmar Reserva</button>
+    </div>
+
+    <script>
+        // Función para guardar el estado seleccionado
+        function guardarEstado(estado) {
+            localStorage.setItem('estadoReserva', estado);
+            document.getElementById('estadoSeleccionado').innerHTML = `Estado seleccionado: <span>${estado}</span>`;
+        }
+
+        // Función para confirmar la reserva
+        function confirmarReserva() {
+            const nombre = document.getElementById('nombre').value;
+            const personas = document.getElementById('personas').value;
+            const fecha = document.getElementById('fecha').value;
+            const hora = document.getElementById('hora').value;
+            const estado = localStorage.getItem('estadoReserva') || 'Ninguno';
+
+            if (!nombre || !personas || !fecha || !hora) {
+                alert('Por favor, complete todos los campos antes de confirmar.');
+                return;
+            }
+
+            alert(`Reserva confirmada:\nNombre: ${nombre}\nPersonas: ${personas}\nFecha: ${fecha}\nHora: ${hora}\nEstado: ${estado}`);
+        }
+
+        // Recuperar estado almacenado
+        window.onload = function () {
+            const estadoGuardado = localStorage.getItem('estadoReserva');
+            if (estadoGuardado) {
+                document.getElementById('estadoSeleccionado').innerHTML = `Estado seleccionado: <span>${estadoGuardado}</span>`;
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

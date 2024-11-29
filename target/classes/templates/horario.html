@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios de Reservas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: rgb(233, 214, 211);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+            margin-bottom: 20px;
+        }
+        .restaurant-hours {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 30px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+        }
+        .schedule {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .schedule th, .schedule td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .schedule th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+        .schedule td {
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .schedule td.available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .schedule td.limited {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .schedule td.booked {
+            background-color: #f8d7da;
+            color: #721c24;
+            cursor: not-allowed;
+        }
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            text-align: center;
+        }
+        .legend div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .legend .box {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .box.available {
+            background-color: #d4edda;
+        }
+        .box.limited {
+            background-color: #fff3cd;
+        }
+        .box.booked {
+            background-color: #f8d7da;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Horarios de Reservas</h1>
+        <div class="restaurant-hours">
+            <p>Horario del Restaurante: Lunes a Domingo, 12:00 PM - 10:00 PM</p>
+        </div>
+        <table class="schedule">
+            <thead>
+                <tr>
+                    <th>Horario</th>
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miércoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sábado</th>
+                    <th>Domingo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Horarios generados -->
+                <tr>
+                    <td>12:00 PM - 1:00 PM</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                </tr>
+                <tr>
+                    <td>1:00 PM - 2:00 PM</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                </tr>
+                <tr>
+                    <td>2:00 PM - 3:00 PM</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                </tr>
+                <tr>
+                    <td>3:00 PM - 4:00 PM</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                </tr>
+                <tr>
+                    <td>4:00 PM - 5:00 PM</td>
+                    <td class="available">Disponible</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                </tr>
+                <tr>
+                    <td>5:00 PM - 6:00 PM</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                </tr>
+                <tr>
+                    <td>6:00 PM - 7:00 PM</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                </tr>
+                <tr>
+                    <td>7:00 PM - 8:00 PM</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="available">Disponible</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                </tr>
+                <tr>
+                    <td>8:00 PM - 9:00 PM</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                    <td class="booked">Reservado</td>
+                    <td class="limited">Casi lleno</td>
+                </tr>
+                <tr>
+                    <td>9:00 PM - 10:00 PM</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                    <td class="booked">Reservado</td>
+                    <td class="available">Disponible</td>
+                    <td class="limited">Casi lleno</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="legend">
+            <div>
+                <div class="box available"></div>
+                <span>Disponible</span>
+            </div>
+            <div>
+                <div class="box limited"></div>
+                <span>Casi lleno</span>
+            </div>
+            <div>
+                <div class="box booked"></div>
+                <span>Reservado</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
