@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Control - Restaurante</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #0d3b66, #145da0);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: #112d4e;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%);
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #112d4e;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1100;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            background: #0d3b66;
+        }
+
+        .main-container {
+            margin-left: 250px;
+            transition: margin-left 0.3s ease-in-out;
+            padding: 50px;
+            color: white;
+        }
+
+        .main-container.shifted {
+            margin-left: 0;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 20px;
+        }
+
+        .card {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #38c172;
+        }
+
+        .card p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .card .btn-custom {
+            background-color: #38c172;
+            color: #fff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .card .btn-custom:hover {
+            background-color: #2d8659;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Botón de menú -->
+    <button class="toggle-btn" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+	<nav class="navbar navbar-expand-lg navbar-light">
+	        <div class="container-fluid">
+	            
+	            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+	                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button>
+	            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+	                <ul class="navbar-nav">
+	                    <li class="nav-item">
+	                        <a class="btn btn-custom" th:href="@{/}">
+	                            <i class="bi bi-box-arrow-right"></i> Salir
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </nav>
+
+    <!-- Barra lateral -->
+    <div class="sidebar hidden">
+        <h2>Menú</h2>
+        <a th:href="@{/coordinador/estudiante/crear}"><i class="bi bi-calendar-plus"></i> Crear Reserva</a>
+        <a th:href="@{/coordinador/lista}"><i class="bi bi-list-check"></i> Gestionar Reservas</a>
+        <a th:href="@{/estudiante/ranking}"><i class="bi bi-table"></i> Estado de Mesas</a>
+        <a th:href="@{/cliente/horario}"><i class="bi bi-clock"></i> Horario</a>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="main-container shifted">
+        <div class="header">
+            <h1>¡Bienvenido!</h1>
+            <p>Selecciona una opción para comenzar</p>
+        </div>
+        <div class="card-container">
+            <div class="card">
+                <i class="bi bi-calendar-plus"></i>
+                <p>Crear Reserva</p>
+                <a th:href="@{/coordinador/estudiante/crear}" class="btn-custom">Crear</a>
+            </div>
+            <div class="card">
+                <i class="bi bi-list-check"></i>
+                <p>Gestionar Reservas</p>
+                <a th:href="@{/coordinador/lista}" class="btn-custom">Gestionar</a>
+            </div>
+            <div class="card">
+                <i class="bi bi-table"></i>
+                <p>Estado de Mesas</p>
+                <a th:href="@{/estudiante/ranking}" class="btn-custom">Estado</a>
+            </div>
+            <div class="card">
+                <i class="bi bi-clock"></i>
+                <p>Horario</p>
+                <a th:href="@{/cliente/horario}" class="btn-custom">Ver Horario</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContainer = document.querySelector('.main-container');
+            sidebar.classList.toggle('hidden');
+            mainContainer.classList.toggle('shifted');
+        }
+    </script>
+</body>
+
+</html>

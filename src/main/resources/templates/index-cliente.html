@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Panel de Control - Restaurante</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #34d399, #2c7c99);
+            color: #fff;
+        }
+
+        /* Barra lateral */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #2b6e46;
+            padding-top: 30px;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #1d4d2d;
+            border-radius: 5px;
+        }
+
+        /* Cabecera */
+        .header {
+            padding: 50px;
+            background: #38c172;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .header h2 {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        /* Animación de carga de tarjetas */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            margin-top: 30px;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .card {
+            width: 300px;
+            margin: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            text-align: center;
+            padding: 30px;
+            background: #34d399;
+            color: #fff;
+        }
+
+        .card-body i {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .card-body p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .btn-custom {
+            background-color: #fff;
+            color: #34d399;
+            font-size: 1.1rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #34d399;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #1c1c1c;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .container-main {
+            margin-left: 250px;
+            padding: 40px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Barra lateral -->
+    <div class="sidebar">
+        <h2 style="text-align:center; color:white;">Menú</h2>
+        <a th:href="@{/cliente/crear-reserva}">Crear Reserva</a>
+        <a th:href="@{/cliente/gestionar-reservas}">Gestionar Reservas</a>
+        <a th:href="@{/cliente/horario}">Ver Horario</a>
+        
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container-main">
+        <!-- Cabecera -->
+        <div class="header">
+            <h1>¡Bienvenido, <span>Usuario</span>!</h1>
+            <h2>Gestión de Reservas</h2>
+        </div>
+
+        <!-- Tarjetas -->
+        <div class="card-container">
+            <div class="card">
+                <div class="card-body">
+                    <i class="bi bi-calendar-plus"></i>
+                    <p>Crear una nueva reserva</p>
+                    <a th:href="@{/cliente/crear-reserva}" class="btn-custom">Crear Reserva</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <i class="bi bi-list-check"></i>
+                    <p>Gestionar tus reservas</p>
+                    <a th:href="@{/cliente/gestionar-reservas}" class="btn-custom">Gestionar</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <i class="bi bi-clock"></i>
+                    <p>Ver tu horario</p>
+                    <a th:href="@{/cliente/horario}" class="btn-custom">Ver Horario</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Restaurante El Paraíso - Todos los derechos reservados</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz4fnFO9gybYcD4K/8I0S/o1b+osRzpG2dP4eM56a2au+C8G24L6L6Bv8m"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-HxN3z84VYVt0U8b2jJc7Rn3SwGBxH+FZJ/yKtOZtV/RK2uXUu5Hqt/8Cw5XjlUtD"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

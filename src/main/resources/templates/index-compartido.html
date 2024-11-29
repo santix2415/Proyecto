@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido - Restaurante Gourmet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRqQfiFO8r7y7pYm8uCMSl0vL1f79Q3HP36g&s" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .hero {
+            background: url('https://www.bdpcenter.com/wp-content/uploads/2022/02/hosteleria-8.jpg?x85699') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .about,
+        .services {
+            padding: 40px 20px;
+        }
+
+        .about h2,
+        .services h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header con accesos -->
+    <header>
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1>Restaurante Gourmet</h1>
+            <div>
+                <a href="/coordinador/login" class="btn btn-primary btn-sm me-2">Administrador</a>
+                <a href="/cliente/index" class="btn btn-success btn-sm me-2">Cliente</a>
+                <a href="/estudiante/login" class="btn btn-warning btn-sm">Recepcionista</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección hero -->
+    <section class="hero">
+        <h2>Bienvenido al Restaurante Gourmet</h2>
+        <p>Una experiencia culinaria única en el corazón de la ciudad.</p>
+    </section>
+
+    <!-- Sobre nosotros -->
+    <section class="about">
+        <div class="container">
+            <h2>Sobre Nosotros</h2>
+            <p>
+                En Restaurante Gourmet, nos dedicamos a ofrecer platos excepcionales preparados con los ingredientes más frescos y de la más alta calidad.
+                Nuestro equipo de chefs expertos combina innovación culinaria con tradiciones clásicas para brindarte una experiencia inolvidable.
+            </p>
+            <!-- Video incrustado -->
+            <div class="ratio ratio-16x9 mt-4">
+                <iframe src="https://www.youtube.com/embed/kKnAJ87YbBI" 
+                        title="Video de Restaurante Gourmet" 
+                        allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="services">
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <i class="bi bi-cup-straw fs-1 text-primary mb-3"></i>
+                        <h5 class="card-title">Comida Gourmet</h5>
+                        <p class="card-text">Disfruta de una selección de platos cuidadosamente preparados por nuestros chefs.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <i class="bi bi-people fs-1 text-success mb-3"></i>
+                        <h5 class="card-title">Eventos Privados</h5>
+                        <p class="card-text">Organizamos eventos personalizados para momentos especiales.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card p-3">
+                        <i class="bi bi-award fs-1 text-warning mb-3"></i>
+                        <h5 class="card-title">Premios y Reconocimientos</h5>
+                        <p class="card-text">Orgullosos de ser galardonados como uno de los mejores restaurantes de la ciudad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer con accesos -->
+    <footer>
+        <p>&copy; 2024 Restaurante Gourmet | <a href="#">Política de Privacidad</a></p>
+        <p>
+            <a href="/coordinador/login">Administrador</a> | 
+            <a href="/cliente/index">Cliente</a> | 
+            <a href="/estudiante/login">Recepcionista</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

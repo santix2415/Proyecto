@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesas del Restaurante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Fondo general */
+        body {
+            background: linear-gradient(120deg, #fdf5e6, #f7e7ce);
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Encabezado */
+        .header {
+            background: linear-gradient(90deg, #d2691e, #ff7f50);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+        }
+
+        /* Contenedor */
+        .container {
+            margin-top: 40px;
+        }
+
+        /* Tabla personalizada */
+        .table {
+            width: 95%;
+            margin: 0 auto;
+            background: white;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .table thead th {
+            background: linear-gradient(90deg, #d2691e, #ff7f50);
+            color: white;
+            text-transform: uppercase;
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background: #fffaf0;
+        }
+
+        .table tbody tr:hover {
+            background: #ffe4b5;
+        }
+
+        .table td {
+            padding: 15px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* Botón de navegación */
+        .btn-back {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(90deg, #d2691e, #ff7f50);
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(90deg, #ff7f50, #d2691e);
+        }
+
+        /* Pie de página */
+        footer {
+            background: linear-gradient(90deg, #d2691e, #ff7f50);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Mesas del Restaurante</h1>
+    </header>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Reserva</th>
+                    <th>Nombre y Fecha</th>
+                    <th>Personas</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="estudiante, iterStat : ${ranking}">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${estudiante.primerNombre + ' ' + estudiante.primerApellido}"></td>
+                    <td th:text="${estudiante.puntaje == -1 ? 'Anulado' : estudiante.puntaje}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center mt-4">
+            <button class="btn-back" onclick="window.history.back()">Volver</button>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 Restaurante Gourmet - Sistema de Reservas. Todos los derechos reservados.
+        <br>
+        <a href="#">Política de Privacidad</a> | <a href="#">Términos de Uso</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

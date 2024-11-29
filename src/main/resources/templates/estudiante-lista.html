@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        h1 {
+            margin: 30px 0;
+            color: #388E3C;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 10px 15px;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        .btn {
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #388E3C;
+        }
+
+        .btn-danger {
+            background-color: #E53935;
+            border: none;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #C62828;
+        }
+
+        .btn-info {
+            background-color: #2196F3;
+            border: none;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #1976D2;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #4CAF50, #81C784);
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Sistema de Reservas
+    </header>
+    <div class="container">
+        <h1>Lista de Reservas</h1>
+        <div class="row">
+            <!-- Ciclo de registros de estudiantes -->
+            <div th:each="estudiante : ${estudiantes}" class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        Reserva de: <span th:text="${estudiante.primerNombre}"></span>
+                    </div>
+                    <div class="card-body">
+						<p><strong>Usuario:</strong> <span th:text="${estudiante.usuario}"></span></p>
+												<p><strong>Contraseña:</strong> <span th:text="${estudiante.contrasena}"></span></p>
+												<p><strong>Documento:</strong> <span th:text="${estudiante.tipoDocumento} + ' ' + ${estudiante.numeroDocumento}"></span></p>
+												<p><strong>Fecha de reserva:</strong> <span th:text="${estudiante.primerApellido}"></span></p>
+												<p><strong>Tipo de reserva:</strong> <span th:text="${estudiante.segundoApellido}"></span></p>
+												<p><strong>Nombre completo:</strong> <span th:text="${estudiante.primerNombre}"></span></p>
+												<p><strong>Detalles de la reserva:</strong> <span th:text="${estudiante.segundoNombre}"></span></p>
+												<p><strong>Correo Electrónico:</strong> <span th:text="${estudiante.correoElectronico}"></span></p>
+												<p><strong>Número Telefónico:</strong> <span th:text="${estudiante.numeroTelefonico}"></span></p>
+												<p><strong>Hora de la reserva:</strong> <span th:text="${estudiante.numeroRegistro}"></span></p>
+												<p><strong>Número de personas:</strong> <span th:text="${estudiante.puntaje == -1 ? 'Anulado' : estudiante.puntaje}"></span></p>
+                        <div class="btn-group">
+                            <a th:href="@{/coordinador/estudiante/edit/{id}(id=${estudiante.id})}" class="btn btn-primary">Editar</a>
+                            <a th:href="@{/coordinador/estudiante/delete/{id}(id=${estudiante.id})}" class="btn btn-danger">Eliminar</a>
+                            <a th:href="@{/estudiante/informe/{id}(id=${estudiante.id})}" class="btn btn-info">Informe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Sistema de Reservas | Todos los derechos reservados
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
